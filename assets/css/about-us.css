@@ -225,6 +225,36 @@
     }
 }
 
+/* HP (portrait <=576px, atau perangkat sentuh utama termasuk landscape): tanpa blur sama sekali.
+   Wallpaper fixed membuat blur dihitung ulang tiap frame saat scroll, jadi kesan kaca
+   cukup dari tint transparan, gradasi putih tipis, border halus, dan highlight atas.
+   Ditaruh setelah @supports agar tampilannya sama di semua browser. */
+@media (max-width: 576px), (hover: none) and (pointer: coarse) {
+    .info-item {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+        background-color: rgba(16, 18, 40, 0.58);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Pengganti hover di HP: panel yang terbuka disorot ungu satu panel utuh
+       (warna sama dengan hover desktop), kembali normal saat ditutup. */
+    .info-item.terbuka {
+        background-color: rgba(33, 28, 87, 0.66); /* tint ungu 20% di atas kaca gelap mobile */
+        border-color: rgba(73, 52, 195, 1);
+        box-shadow:
+            0 0 0 1px rgba(73, 52, 195, 1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+
+    /* hilangkan kotak sorot biru bawaan browser saat tap */
+    .info-tombol {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
 .info-item-judul {
     margin: 0;
     font-size: inherit;
@@ -363,15 +393,6 @@
     .pengenalan-teks {
         font-size: 15px;
         line-height: 24px;
-    }
-
-    /* Kaca lebih ringan di HP: wallpaper fixed membuat blur dihitung ulang tiap frame
-       saat scroll untuk setiap panel yang terlihat. Blur kecil tanpa saturate +
-       satu highlight tipis mengurangi beban GPU; warna, border, dan radius tetap. */
-    .info-item {
-        -webkit-backdrop-filter: blur(6px);
-        backdrop-filter: blur(6px);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
     .info-tombol {
