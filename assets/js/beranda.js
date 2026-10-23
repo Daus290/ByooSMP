@@ -16,12 +16,6 @@ $(document).ready(function() {
 });
 
 
-// tahun copyright otomatis
-$(document).ready(function() {
-    $("#year").text(new Date().getFullYear());
-});
-
-
 //observer viewport scroll
 $(document).ready(function () {
     let observer = new IntersectionObserver(function (entries) {

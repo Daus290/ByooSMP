@@ -1,0 +1,390 @@
+/* Halaman About Us (about-us.html) */
+
+.about-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: white;
+    background-color: #141526; /* fallback jika wallpaper gagal dimuat */
+    overflow-x: hidden;
+}
+
+/* Wallpaper mengikuti ukuran layar (bukan tinggi dokumen); konten bergulir di depannya.
+   Tinggi 100lvh agar skala tidak berubah saat bilah browser mobile muncul/hilang. */
+.about-page::before,
+.about-page::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100lvh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-page::before {
+    background-image: url("../../gambar/about-us-wallpaper.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/* Satu overlay gelap tipis untuk keterbacaan */
+.about-page::after {
+    background: linear-gradient(rgba(6, 8, 22, 0.18), rgba(6, 8, 22, 0.32));
+}
+
+/* Konten dan footer di atas layer wallpaper */
+.about-main,
+.about-page > .footer {
+    position: relative;
+    z-index: 1;
+}
+
+.about-main {
+    flex: 1;
+    width: 100%;
+    max-width: 1188px;
+    margin: 0 auto;
+    padding: 56px 24px clamp(64px, 7vw, 96px);
+}
+
+
+
+/* Tombol kembali */
+.tombol-kembali {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    font-size: 13px;
+    line-height: 18px;
+    color: white;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.tombol-kembali:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.tombol-kembali:focus-visible,
+.info-tombol:focus-visible,
+.tombol-gallery:focus-visible {
+    outline: 2px solid #ffc36b;
+    outline-offset: 3px;
+}
+
+.tombol-kembali svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+
+/* Pengenalan */
+.pengenalan {
+    text-align: center;
+}
+
+.pengenalan-judul {
+    margin: clamp(28px, 4vw, 40px) 0 0;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 550;
+}
+
+/* Divider sinar bintang di bawah judul (dekoratif, statis) */
+.divider-bintang {
+    --divider-panjang: min(100%, 960px);
+    --divider-warna-inti: rgba(240, 248, 255, 0.95);   /* putih keperakan */
+    --divider-warna-aurora: rgba(150, 236, 228, 0.55); /* cyan lembut aurora */
+    --divider-glow: 0.6;                               /* intensitas halo 0-1 */
+    --divider-kilau: 18px;                             /* ukuran bintang pusat */
+
+    position: relative;
+    width: var(--divider-panjang);
+    height: var(--divider-kilau);
+    margin: 12px auto 0;
+    pointer-events: none;
+}
+
+/* garis tipis, ujung memudar, tengah lebih terang */
+.divider-bintang::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--divider-warna-aurora) 30%,
+        var(--divider-warna-inti) 50%,
+        var(--divider-warna-aurora) 70%,
+        transparent 100%);
+}
+
+/* halo lembut di pusat + dua titik kilau kecil */
+.divider-bintang::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(260px, 70%);
+    height: calc(var(--divider-kilau) * 1.6);
+    transform: translate(-50%, -50%);
+    opacity: var(--divider-glow);
+    background:
+        radial-gradient(circle at calc(50% - 34px) 50%, var(--divider-warna-inti) 0 1px, transparent 1.6px),
+        radial-gradient(circle at calc(50% + 46px) 50%, var(--divider-warna-aurora) 0 1px, transparent 1.6px),
+        radial-gradient(ellipse at center, var(--divider-warna-aurora) 0%, rgba(150, 236, 228, 0.12) 35%, transparent 70%);
+}
+
+.divider-bintang-kilau {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: var(--divider-kilau);
+    height: var(--divider-kilau);
+    transform: translate(-50%, -50%);
+    fill: var(--divider-warna-inti);
+    filter:
+        drop-shadow(0 0 2px var(--divider-warna-inti))
+        drop-shadow(0 0 6px var(--divider-warna-aurora));
+}
+
+.pengenalan-teks {
+    max-width: 640px;
+    margin: clamp(64px, 11vw, 168px) auto 0;
+    font-size: 18px;
+    line-height: 25px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+
+/* Little more about us */
+.lebih-lanjut {
+    margin-top: clamp(96px, 15vw, 230px);
+}
+
+.lebih-lanjut-judul {
+    margin: 0 0 22px;
+    font-size: clamp(26px, 2.6vw, 36px);
+    font-weight: 550;
+}
+
+.info-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Liquid glass: blur hanya pada latar di belakang panel */
+.info-item {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+    background-color: rgba(14, 16, 30, 0.36);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 11px;
+    box-shadow:
+        0 0 0 1px transparent,
+        0 10px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Hover mencakup satu panel utuh (judul + isi saat terbuka).
+   Border 2px = border 1px + cincin box-shadow 1px, jadi ukuran panel tidak berubah. */
+.info-item:hover {
+    background-color: rgba(38, 31, 98, 0.49); /* tint ungu 20% di atas kaca gelap */
+    border-color: rgba(73, 52, 195, 1);
+    box-shadow:
+        0 0 0 1px rgba(73, 52, 195, 1),
+        0 10px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .info-item {
+        background: rgba(18, 20, 36, 0.82);
+    }
+}
+
+.info-item-judul {
+    margin: 0;
+    font-size: inherit;
+}
+
+.info-tombol {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 26px 28px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    color: white;
+    text-align: left;
+    background: none;
+    border: 0;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: padding-bottom 0.3s ease;
+}
+
+.info-item.terbuka .info-tombol {
+    padding-bottom: 16px;
+}
+
+.info-chevron {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.info-tombol[aria-expanded="true"] .info-chevron {
+    transform: rotate(180deg);
+}
+
+.info-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 0.3s ease, visibility 0.3s;
+}
+
+.info-item.terbuka .info-panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+}
+
+.info-panel-isi {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.info-panel-isi p {
+    margin: 0;
+    padding: 0 28px 26px;
+    font-size: 15px;
+    line-height: 36px;
+    color: white;
+}
+
+
+
+/* Gallery */
+.gallery {
+    margin-top: clamp(72px, 8vw, 120px);
+    text-align: center;
+}
+
+.gallery-judul {
+    margin: 0 0 22px;
+    font-size: clamp(28px, 2.8vw, 38px);
+    font-weight: 550;
+}
+
+.tombol-gallery {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 42px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: white;
+    text-shadow: 0 1px 2px rgba(80, 36, 0, 0.35);
+    background-color: transparent;
+    background-image: linear-gradient(90deg, rgba(226, 150, 74, 0.2), rgba(199, 183, 171, 0.2));
+    border: 2px solid rgba(233, 132, 16, 0.944);
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease,
+        text-shadow 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* Placeholder nonaktif: tetap jelas, bukan pudar */
+.tombol-gallery:disabled {
+    opacity: 1;
+    cursor: default;
+}
+
+/* Hover hanya untuk pointer (mouse/trackpad) agar tidak tersangkut setelah sentuhan.
+   Hanya fill, warna border, warna teks, dan bayangan yang berubah; ukuran tetap. */
+@media (hover: hover) and (pointer: fine) {
+    .tombol-gallery:hover {
+        background-color: rgba(245, 160, 58, 0.95);
+        border-color: rgba(255, 184, 92, 1);
+        color: #3a1c04;
+        text-shadow: none;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), 0 0 18px rgba(255, 150, 40, 0.45);
+    }
+}
+
+.tombol-gallery:not(:disabled):focus-visible {
+    background-color: rgba(245, 160, 58, 0.95);
+    border-color: rgba(255, 184, 92, 1);
+    color: #3a1c04;
+    text-shadow: none;
+}
+
+.tombol-gallery svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+
+/* Mobile */
+@media (max-width: 576px) {
+    .about-main {
+        padding: 32px 40px 64px;
+    }
+
+    .pengenalan-teks {
+        font-size: 15px;
+        line-height: 24px;
+    }
+
+    .info-tombol {
+        padding: 20px 20px;
+        font-size: 15px;
+    }
+
+    .info-item.terbuka .info-tombol {
+        padding-bottom: 12px;
+    }
+
+    .info-panel-isi p {
+        padding: 0 20px 20px;
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tombol-kembali,
+    .info-item,
+    .info-tombol,
+    .info-chevron,
+    .info-panel,
+    .tombol-gallery {
+        transition: none;
+    }
+}
