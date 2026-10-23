@@ -1,13 +1,6 @@
-/* All */
-* {
-    font-family: Montserrat;
-    scroll-behavior: smooth;
-    padding: 0;
-    margin: 0;
-}
-
+/* Halaman Beranda (index.html) */
 header, section, footer {
-    position: relative; 
+    position: relative;
 }
 
 .judul {
@@ -108,7 +101,7 @@ header, section, footer {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url("gambar/gambarByoo1.jpeg");
+    background-image: url("../../gambar/gambarByoo1.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -128,7 +121,7 @@ header, section, footer {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url("gambar/gambarByoo2.jpeg");
+    background-image: url("../../gambar/gambarByoo2.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -168,7 +161,7 @@ header, section, footer {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url("gambar/gambarByoo3.jpeg");
+    background-image: url("../../gambar/gambarByoo3.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -238,29 +231,9 @@ header, section, footer {
 
 
 
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, rgb(16, 18, 59), rgb(0, 0, 0));
-    font-size: 12px;
-    text-align: center;
-}
-
-.footer a {
-    text-decoration: none;
-    color: white;
-}
-
-.footer a:hover {
-    color: rgba(255, 143, 15, 0.961);
-    text-decoration: underline;
-    transition: color 0.4s ease-in-out, text-decoration 0.4s ease-in;
-}
-
-
-
 /* Media Query -> sampai ukuran tablet 768px*/
 @media (max-width: 768px)  {
-    
+
     .judul {
         font-size: 26px;
     }
@@ -334,16 +307,6 @@ header, section, footer {
         left: 10%;
     }
 }
-
-
-    /* Footer */
-    .footer {
-        padding-left: 30px;
-    }
-
-    .footer-signature, .footer-copyright, .footer-email, .footer-phone {
-        font-size: 10px;
-    }
 
 
 

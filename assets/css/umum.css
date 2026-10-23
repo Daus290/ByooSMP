@@ -1,0 +1,94 @@
+/* Aturan bersama: Beranda dan About Us */
+* {
+    font-family: Montserrat;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, rgb(16, 18, 59), rgb(0, 0, 0));
+    color: white;
+    padding: 28px 24px;
+    text-align: center;
+}
+
+/* Versi About Us: gradasi sama, sedikit transparan (tanpa blur/kaca) */
+.footer.footer-transparan {
+    background: linear-gradient(135deg, rgba(16, 18, 59, 0.7), rgba(0, 0, 0, 0.7));
+}
+
+.footer-isi {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 260px));
+    justify-content: center;
+    column-gap: 64px;
+    row-gap: 20px;
+}
+
+.footer-kelompok {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer-signature, .footer-copyright, .footer-email, .footer-phone {
+    margin: 0;
+    font-size: 12px;
+    line-height: 22px;
+    overflow-wrap: anywhere;
+}
+
+.footer-copyright {
+    margin-top: 14px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer a:hover {
+    color: rgba(255, 143, 15, 0.961);
+    text-decoration: underline;
+    transition: color 0.4s ease-in-out, text-decoration 0.4s ease-in;
+}
+
+.footer a:focus-visible {
+    outline: 2px solid rgba(255, 143, 15, 0.961);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* Mobile: satu kolom, semua informasi rata kiri pada garis yang sama, lebih ringkas */
+@media (max-width: 576px) {
+    .footer {
+        padding: 24px 20px;
+        text-align: left;
+    }
+
+    .footer-isi {
+        grid-template-columns: minmax(0, 1fr);
+        justify-content: start;
+        justify-items: start;
+        row-gap: 10px;
+    }
+
+    .footer-kelompok {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .footer-signature, .footer-copyright, .footer-email, .footer-phone {
+        font-size: 10px;
+        line-height: 18px;
+        text-align: left;
+    }
+
+    .footer-copyright {
+        margin-top: 0;
+    }
+}
